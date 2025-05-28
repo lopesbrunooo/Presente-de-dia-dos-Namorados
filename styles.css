@@ -1,0 +1,222 @@
+body {
+    margin: 0;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #f5e1e1;
+    font-family: Arial, sans-serif;
+    overflow-x: hidden;
+}
+
+.container {
+    text-align: center;
+    width: 100%;
+    max-width: 1000px;
+    padding: 0 15px;
+    box-sizing: border-box;
+}
+
+.heart {
+    font-size: min(15vw, 100px);
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.heart:hover {
+    transform: scale(1.2);
+}
+
+.letter {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0);
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    max-width: 90%;
+    width: 600px;
+    text-align: center;
+    transition: transform 0.5s ease, opacity 0.5s ease;
+    opacity: 0;
+    max-height: 90vh;
+    overflow-y: auto;
+}
+
+.letter.show {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 1;
+}
+
+.letter.hidden {
+    transform: translate(-50%, -50%) scale(0);
+    opacity: 0;
+}
+
+.letter h2 {
+    color: #e91e63;
+    margin-bottom: 15px;
+    font-size: clamp(1.5rem, 5vw, 2rem);
+}
+
+.letter p {
+    color: #333;
+    line-height: 1.6;
+    font-size: clamp(1rem, 3vw, 1.2rem);
+}
+
+.letter button {
+    margin-top: 20px;
+    padding: 10px 20px;
+    background-color: #e91e63;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    font-size: clamp(0.9rem, 2.5vw, 1rem);
+}
+
+.letter button:hover {
+    background-color: #c2185b;
+}
+
+.carousel {
+    width: 100%;
+    height: 0;
+    padding-bottom: 54.55%; /* Proporção 1980x1080 (1080/1980 ≈ 0.5455) */
+    overflow: hidden;
+    margin-bottom: 20px;
+    border-radius: 10px;
+    position: relative;
+}
+
+.carousel-inner {
+    display: flex;
+    width: 300%;
+    height: 100%;
+    transition: transform 0.5s ease;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.carousel-item {
+    width: 33.33%;
+    height: 100%;
+    object-fit: cover;
+    display: none;
+}
+
+.carousel-item.active {
+    display: block;
+}
+
+.carousel-prev,
+.carousel-next {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(0, 0, 0, 0.5);
+    color: #fff;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    font-size: clamp(1rem, 3vw, 1.2rem);
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.carousel-prev:hover,
+.carousel-next:hover {
+    background-color: rgba(0, 0, 0, 0.7);
+}
+
+.carousel-prev {
+    left: 10px;
+}
+
+.carousel-next {
+    right: 10px;
+}
+
+#music-player {
+    display: none; /* Oculta o player de áudio nativo */
+}
+
+.music-control {
+    background-color: #1db954;
+    color: #fff;
+    border: none;
+    border-radius: 50%;
+    width: clamp(40px, 10vw, 50px);
+    height: clamp(40px, 10vw, 50px);
+    font-size: clamp(1.2rem, 4vw, 1.5rem);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 10px auto;
+    transition: background-color 0.3s ease;
+}
+
+.music-control:hover {
+    background-color: #1ed760;
+}
+
+.music-control.play::before {
+    content: '▶';
+}
+
+.music-control.pause::before {
+    content: '❚❚';
+}
+
+/* Media Queries para dispositivos móveis */
+@media (max-width: 768px) {
+    .letter {
+        padding: 15px;
+        max-width: 95%;
+        width: 100%;
+    }
+
+    .carousel {
+        padding-bottom: 75%; /* Ajusta proporção para telas menores */
+    }
+
+    .carousel-prev,
+    .carousel-next {
+        padding: 8px;
+        font-size: clamp(0.9rem, 4vw, 1rem);
+    }
+
+    .letter button {
+        padding: 8px 16px;
+    }
+
+    .heart {
+        font-size: min(20vw, 80px);
+    }
+
+    .music-control {
+        width: clamp(35px, 12vw, 45px);
+        height: clamp(35px, 12vw, 45px);
+    }
+}
+
+@media (max-width: 480px) {
+    .letter h2 {
+        font-size: clamp(1.2rem, 6vw, 1.5rem);
+    }
+
+    .letter p {
+        font-size: clamp(0.9rem, 4vw, 1rem);
+    }
+
+    .music-control {
+        width: clamp(35px, 12vw, 45px);
+        height: clamp(35px, 12vw, 45px);
+    }
+}
